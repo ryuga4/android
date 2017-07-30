@@ -50,17 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addFriend(id1 : String, id2: String) {
-        Fuel.post("http://cljs-jan.herokuapp.com/add-friend").body("{\"id1\" : $id1, \"id2\" : $id2}").responseString{_,_,result ->
+        Fuel.get("http://cljs-jan.herokuapp.com/add-friend?id1=$id1&id2=$id2").responseString{_,_,result ->
             Log.d("ADDED FRIEND",result.get())
         }
     }
-    private fun addUserPOST(id : String, name : String) {
-        Fuel.post("http://cljs-jan.herokuapp.com/add-user").body("{\"id\" : $id, \"name\" : $name}").responseString{_,_,result ->
-            Log.d("ADDED USER",result.get())
-        }
-    }
+
     private fun addUserGET(id : String, name : String) {
-        Fuel.post("http://cljs-jan.herokuapp.com/add-user?name=$name&id=$id").responseString{_,_,result ->
+        Fuel.get("http://cljs-jan.herokuapp.com/add-user?name=$name&id=$id").responseString{_,_,result ->
             Log.d("ADDED USER",result.get())
         }
     }
